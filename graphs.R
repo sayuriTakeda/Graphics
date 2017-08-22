@@ -69,3 +69,4 @@ p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                # cria ggplot n
 
 ggplotly(p, tooltip = "text", height = 500, width = 540)         # plota gráfico interativo  
                                                                  # com tooltip escolhida e tamanho do gráfico
+
