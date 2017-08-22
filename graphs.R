@@ -56,3 +56,19 @@ ggplotly(p,  width = 700, height = 550)      # plota de maneira interativa e esc
 
 
 
+
+####### Gráfico ggplotly com tooltip modificada 
+p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                # cria ggplot normal                
+  geom_point(colour = "#79a6d2",                                 # cor para os pontos 
+             size = 1,                                           # tamanho dos pontos
+             aes(text = paste0("Sepal: ", Sepal.Length, "\n",    # texto para a tooltip            
+                               "Petal: ", Petal.Length, "\n",
+                               "Species: ", iris$Species))) +   
+  labs(x = "Width",y = "Length") +                               # nome dos eixos         
+  theme_bw()                                                     # troca o fundo cinza por branco
+
+ggplotly(p, tooltip = "text", height = 500, width = 540)         # plota gráfico interativo  
+                                                                 # com tooltip escolhida e tamanho do gráfico
+
+
+
