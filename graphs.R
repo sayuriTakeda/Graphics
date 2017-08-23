@@ -13,14 +13,12 @@ highchart() %>%
 
 
 
-
 ####### Escrever gráfico interativo com ggplot / ggplotly
 p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                 # escreve em ggplot
   geom_point(colour = "#ff4dff", show.legend = "F", size = 1) +   # cor, legenda e tamanho dos pontos 
   labs(x = "Sepal.Width",y = "Sepal.Length")                      # nome dos eixos 
 
 ggplotly(p)                                                       #faz o gráfico ficar interativo  
-
 
 
 
@@ -34,7 +32,6 @@ P <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +         # escolhe a base e as 
   geom_segment(aes(x = 0, y = 0, xend = x2, yend = x2),   # monta a linha (começando no 0,0)
                colour = "#737373", size = 0.3)            # cor e largura da linha
 ggplotly(P, height = 600, width = 640)                    # plota o gráfico interativo e escolhe tamanho
-
 
 
 
@@ -56,7 +53,6 @@ ggplotly(p,  width = 700, height = 550)      # plota de maneira interativa e esc
 
 
 
-
 ####### Gráfico ggplotly com tooltip modificada 
 p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                # cria ggplot normal                
   geom_point(colour = "#79a6d2",                                 # cor para os pontos 
@@ -69,4 +65,3 @@ p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                # cria ggplot n
 
 ggplotly(p, tooltip = "text", height = 500, width = 540)         # plota gráfico interativo  
                                                                  # com tooltip escolhida e tamanho do gráfico
-
