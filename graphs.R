@@ -65,3 +65,13 @@ p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                # cria ggplot n
 
 ggplotly(p, tooltip = "text", height = 500, width = 540)         # plota gráfico interativo  
                                                                  # com tooltip escolhida e tamanho do gráfico
+
+
+####### Gráfico ggplot scale_fill_gradient (geom_col)
+g <- ggplot(fluxo_tab_2, aes(fluxo_tab_2$nomes, fluxo_tab_2$valor))
+g + geom_col(aes(fill = fluxo_tab_2$valor)) +  
+  labs(x = "Período",y = "%") + 
+  geom_text(aes(label = valor, y = valor + 0.05)) +              # para inserir os números de cada barra
+  labs(title = "Título") + 
+  theme(plot.title = element_text(hjust = 0.5), panel.background = element_blank()) +  # deixa o título no meio e o fundo branco
+  scale_fill_gradient(low = "#538cc6", high = "#204060", guide = F)
