@@ -75,3 +75,24 @@ g + geom_col(aes(fill = fluxo_tab_2$valor)) +
   labs(title = "Título") + 
   theme(plot.title = element_text(hjust = 0.5), panel.background = element_blank()) +  # deixa o título no meio e o fundo branco
   scale_fill_gradient(low = "#538cc6", high = "#204060", guide = F)
+
+
+####### Gráfico ggplot position = "dodge" (geom_col)
+# Criação do dataframe
+a <- tab_1_dash %>% transmute(regiao, p1 = cliente, p2 = cliente_2)
+a %<>% gather(key = período, value = valores, -regiao) %>% filter(regiao != "-------")
+# Criação do gráfico
+graph <- 
+  a %>% 
+  ggplot(aes(x = regiao, y = valores, fill = período)) + 
+  geom_col(position = "dodge", 
+           aes(text = paste0("região: ", regiao, "\n",     # texto para a tooltip            
+                             "valor: ", valores))) +
+  labs(x = "Região", y = "Quantidade") +
+  labs(title = "Fluxo de Clientes - Regiões") +     
+  theme(plot.title = element_text(hjust = 0.5),            # título no meio 
+        axis.text.x = element_text(angle = 20, hjust = 1),
+        axis.text.y=element_blank(),                       # para retirar os números do eixo y (tooltip mostra)
+        plot.margin=unit(c(0,0,0,2), "cm"))                # para os nomes do eixo x não ficarem cortados 
+
+ggplotly(graph, tooltip = "text", height = 400, width = 700)  # para ficar interativo 
