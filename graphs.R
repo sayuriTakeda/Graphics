@@ -99,9 +99,9 @@ ggplotly(graph, tooltip = "text", height = 400, width = 700)  # para ficar inter
 
 
 ####### Para ordenar conforme o axis com num e não com factor (ordem alfab)
-teste <- df_cat_pos$CAT
-df_cat_pos$CAT <- factor(df_cat_pos$CAT, levels = teste)
-p <- df_cat_pos %>%
+teste <- rev(df_cat_pos$CAT)                               # depois de ordenar a tabela (dev serve para fazer o contrário)
+df_cat_pos$CAT <- factor(df_cat_pos$CAT, levels = teste)   # o level será a ordem do vetor teste 
+p <- df_cat_pos %>%                                        # ggplot normal   
   ggplot(aes(`var_repr(%)`,CAT))+
   geom_point()
 p
