@@ -96,3 +96,12 @@ graph <-
         plot.margin=unit(c(0,0,0,2), "cm"))                # para os nomes do eixo x não ficarem cortados 
 
 ggplotly(graph, tooltip = "text", height = 400, width = 700)  # para ficar interativo 
+
+
+####### Para ordenar conforme o axis com num e não com factor (ordem alfab)
+teste <- df_cat_pos$CAT
+df_cat_pos$CAT <- factor(df_cat_pos$CAT, levels = teste)
+p <- df_cat_pos %>%
+  ggplot(aes(`var_repr(%)`,CAT))+
+  geom_point()
+p
