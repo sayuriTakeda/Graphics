@@ -108,12 +108,13 @@ p
 
 
 ####### geom_line e point (scale_x_date break 1 month)
-p <- ggplot(base_cpf_mes_ano_ant, aes(x = data, y = qtd))+
-geom_point(colour = "#24478f") +
+p <- ggplot(base_cpf_mes_ano_ant, aes(x = data, y = qtd))+ 
+geom_point(colour = "#24478f") +                              # fica com pontos na linha  
 geom_line(colour = "#85a3e0") +
 labs(x = "Data",y = "", title = "Clientes Mês") +
 theme(plot.margin=unit(c(0,0,1,1), "cm"),
-axis.text.x = element_text(angle = 20, hjust = 1)) +
-ylim((min(base_cpf_mes$qtd) - 100000), (max(base_cpf_mes$qtd) + 100000)) +
-scale_x_date(date_breaks = "1 month", date_labels = "%b %y")
-ggplotly(p)
+axis.text.x = element_text(angle = 20, hjust = 1)) +          # angulo do eixo x 
+ylim((min(base_cpf_mes$qtd) - 100000),                        # arruma o axis
+     (max(base_cpf_mes$qtd) + 100000)) +                      
+scale_x_date(date_breaks = "1 month", date_labels = "%b %y")  # pula de mês em mês (ex: out 2017, nov 2017...)
+ggplotly(p)                                                   # para ficar interativo
