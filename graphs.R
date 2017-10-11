@@ -118,3 +118,16 @@ ylim((min(base_cpf_mes$qtd) - 100000),                        # arruma o axis
      (max(base_cpf_mes$qtd) + 100000)) +                      
 scale_x_date(date_breaks = "1 month", date_labels = "%b %y")  # pula de mês em mês (ex: out 2017, nov 2017...)
 ggplotly(p)                                                   # para ficar interativo
+
+
+####### ggplotly in Shiny
+output$clientes_mes <- renderPlotly({ 
+    p <- ggplot(base_cpf_mes, aes(x = mes, y = valor, color = ano, group = ano))+  # uma linha para cada ano
+    geom_line(aes(text = paste0("Mês: ", mes, "\n",                                # texto para tooltip
+    "Valor: ", valor))) +
+    labs(x = "Mês",y = "", title = "Clientes Mês", colour = "") +                  # tira o título da legenda
+    theme(plot.margin=unit(c(0,0,1,1), "cm")) +                                    
+    ylim((min(base_cpf_mes$valor, na.rm=TRUE) - 100000), (max(base_cpf_mes$valor, na.rm=TRUE) + 100000)) + # arruma eixo
+    scale_color_manual(values=c("#CC6666", "#336699")) +                           # cores das linhas 
+    scale_y_continuous(labels = scales::comma)                                     # tira o formato cientifico no eixo y
+    ggplotly(p, tooltip = "text")})
