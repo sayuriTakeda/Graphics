@@ -131,3 +131,24 @@ output$clientes_mes <- renderPlotly({
     scale_color_manual(values=c("#CC6666", "#336699")) +                           # cores das linhas 
     scale_y_continuous(labels = scales::comma)                                     # tira o formato cientifico no eixo y
     ggplotly(p, tooltip = "text")})
+
+
+####### Plotly (geom_point + geom_line) com tooltip modificada 
+p <- ggplot(base_tornaram_inativos, aes(x = data, y = perc)) +
+  geom_point(colour = "#993333", size = 1) +                                 # escolhe cor e tamanho dos pontos
+  geom_line(colour = "#CC6666") +                                            # escolhe cor da linha
+  labs(x = "Data",y = "(%)", title = "Tornaram Inativos") +
+  theme(plot.margin=unit(c(0,1,1,1), "cm"),                                  # tem a margem recuada para não cortar o lab 
+        axis.text.x = element_text(angle = 30, hjust = 1))+                  # angulo da legenda data   
+  ylim(min(base_tornaram_inativos$perc) - 0.1, max(base_tornaram_inativos$perc) + 0.1)+  # altera o eixo y 
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %y")               # faz a legenda do eixo x pular de mês em mês e mod 
+
+p <- plotly_build(p)
+
+p$x$data[[1]]$text <- paste0("Mês: ", format.Date(base_tornaram_inativos$data, "%m/%y"), "\n",            
+                             "Perc: ", base_tornaram_inativos$perc, "\n",
+                             "Valor: ", base_tornaram_inativos$valor)
+
+p
+
+
