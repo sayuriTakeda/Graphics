@@ -145,10 +145,31 @@ p <- ggplot(base_tornaram_inativos, aes(x = data, y = perc)) +
 
 p <- plotly_build(p)
 
-p$x$data[[1]]$text <- paste0("Mês: ", format.Date(base_tornaram_inativos$data, "%m/%y"), "\n",            
+p$x$data[[1]]$text <- paste0("Mês: ", format.Date(base_tornaram_inativos$data, "%m/%y"), "\n",  # montar a tooltip            
                              "Perc: ", base_tornaram_inativos$perc, "\n",
                              "Valor: ", base_tornaram_inativos$valor)
-
 p
 
 
+####### ggplotly no Shiny com position = "stack" e cores modificadas
+output$clientes_fieis <- renderPlotly({                                        # como é shiny tem que ter renderPlotly
+    # Arrumando o eixo (por algum bug estava pegando 1 mês a mais antes e depois)
+    intervalo_datas <- sort(unique(base_mantiveram_tornaram_fieis$datas))
+    label_datas <- format.Date(intervalo_datas, "%b/%y")                       # formato como Oct/2017 ...
+    # Criação do gráfico
+    graph <- base_mantiveram_tornaram_fieis %>% 
+      ggplot(aes(x = datas, y = valor, fill = tipo)) +                         # vai colorir conforme o tipo 
+      geom_col(position = "stack",                                             # uma barra em cima da outra   
+               aes(text = paste0("data: ", format.Date(datas, "%m/%y"), "\n",  # texto para a tooltip            
+                                 "valor: ", valor, "\n",
+                                 "perc: ", perc))) +
+      labs(x = "Data", y = "Quantidade", title = "Clientes Fiéis", fill = "") +  # fill = "" e não colour = "" 
+      theme(plot.title = element_text(hjust = 0.5),                              # título no meio 
+            axis.text.x = element_text(angle = 20, hjust = 1),                   # angulo das datas no eixo x
+            axis.text.y=element_blank(),                                         # para retirar os números do eixo y (tooltip mostra)
+            plot.margin=unit(c(0,0,1,2), "cm")) +                                # recuo da margem 
+      scale_x_date(breaks = intervalo_datas, date_labels = label_datas) +        # o label vai ser como definido no início
+      scale_fill_manual(values = c("#5c85d6", "#666699"))                        # para alterar as cores do preenchimento 
+    
+    ggplotly(graph, tooltip = "text")                                            # deixar interativo 
+  })
