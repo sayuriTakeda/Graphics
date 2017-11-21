@@ -60,7 +60,7 @@ p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                # cria ggplot n
              aes(text = paste0("Sepal: ", Sepal.Length, "\n",    # texto para a tooltip            
                                "Petal: ", Petal.Length, "\n",
                                "Species: ", iris$Species))) +   
-  labs(x = "Width",y = "Length") +                               # nome dos eixos         
+  labs(x = "Width",y = "Length", title = "Gerar para ver tooltip") +                               # nome dos eixos         
   theme_bw()                                                     # troca o fundo cinza por branco
 
 ggplotly(p, tooltip = "text", height = 400, width = 350)         # plota gráfico interativo  
