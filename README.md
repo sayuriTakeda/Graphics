@@ -1,4 +1,4 @@
-# Interactive Graphs Examples
+# Interactive Graphics Examples
 
 ![](Rplot4_2.png)
 
