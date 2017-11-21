@@ -46,10 +46,13 @@ p <- ggplot(df, aes(x, y)) +                 # cria um ggplot
   scale_colour_gradient(low = "#33ccff",     # a "menor cor" 
                         high = "#ff99cc") +  # a "maior cor"
   theme(axis.text.x=element_blank(),         # pode botar o título tirando essa parte e inserindo + labs(title = "Nome do Título")
-        axis.title.x=element_blank(),        # retira o nome do eixo x
-        axis.title.y=element_blank())        # retira o nome do eixo y
+        axis.title.x=element_blank(),        # retira o nome do eixo x 
+        axis.title.y=element_blank()) +      # retira o nome do eixo y
+  labs(title = "Interativo + cores em gradiente",
+       colour = "Sepal Lenght") 
 
 ggplotly(p,  width = 500, height = 350)      # plota de maneira interativa e escolhe tamanho  
+
 
 
 
