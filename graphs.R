@@ -54,17 +54,17 @@ ggplotly(p,  width = 500, height = 350)      # plota de maneira interativa e esc
 
 
 ####### Gráfico ggplotly com tooltip modificada 
-p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                # cria ggplot normal                
-  geom_point(colour = "#79a6d2",                                 # cor para os pontos 
-             size = 1,                                           # tamanho dos pontos
-             aes(text = paste0("Sepal: ", Sepal.Length, "\n",    # texto para a tooltip            
+p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                   # cria ggplot normal                
+  geom_point(colour = "#79a6d2",                                    # cor para os pontos 
+             size = 1,                                              # tamanho dos pontos
+             aes(text = paste0("Sepal: ", Sepal.Length, "\n",       # texto para a tooltip            
                                "Petal: ", Petal.Length, "\n",
                                "Species: ", iris$Species))) +   
-  labs(x = "Width",y = "Length", title = "Gerar para ver tooltip") +                               # nome dos eixos         
-  theme_bw()                                                     # troca o fundo cinza por branco
+  labs(x = "Width",y = "Length", title = "Gerar para ver tooltip") +  # nome dos eixos         
+  theme_bw()                                                        # troca o fundo cinza por branco
 
-ggplotly(p, tooltip = "text", height = 400, width = 350)         # plota gráfico interativo  
-                                                                 # com tooltip escolhida e tamanho do gráfico
+ggplotly(p, tooltip = "text", height = 400, width = 350)            # plota gráfico interativo  
+                                                                    # com tooltip escolhida e tamanho do gráfico
 
 
 ####### Gráfico ggplot scale_fill_gradient (geom_col)
@@ -135,13 +135,14 @@ output$clientes_mes <- renderPlotly({
 
 ####### Plotly (geom_point + geom_line) com tooltip modificada 
 p <- ggplot(base_tornaram_inativos, aes(x = data, y = perc)) +
-  geom_point(colour = "#993333", size = 1) +                                 # escolhe cor e tamanho dos pontos
-  geom_line(colour = "#CC6666") +                                            # escolhe cor da linha
+  geom_point(colour = "#993333", size = 1) +                               # escolhe cor e tamanho dos pontos
+  geom_line(colour = "#CC6666") +                                          # escolhe cor da linha
   labs(x = "Data",y = "(%)", title = "Tornaram Inativos") +
-  theme(plot.margin=unit(c(0,1,1,1), "cm"),                                  # tem a margem recuada para não cortar o lab 
-        axis.text.x = element_text(angle = 30, hjust = 1))+                  # angulo da legenda data   
-  ylim(min(base_tornaram_inativos$perc) - 0.1, max(base_tornaram_inativos$perc) + 0.1)+  # altera o eixo y 
-  scale_x_date(date_breaks = "1 month", date_labels = "%b %y")               # faz a legenda do eixo x pular de mês em mês e mod 
+  theme(plot.margin=unit(c(0,1,1,1), "cm"),                                # tem a margem recuada para não cortar o lab 
+        axis.text.x = element_text(angle = 30, hjust = 1))+                # ângulo da legenda data   
+  ylim(min(base_tornaram_inativos$perc) - 0.1, 
+       max(base_tornaram_inativos$perc) + 0.1)+                            # altera o eixo y 
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %y")             # faz a legenda do eixo x pular de mês em mês e mod 
 
 p <- plotly_build(p)
 
