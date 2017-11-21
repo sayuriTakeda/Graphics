@@ -49,7 +49,7 @@ p <- ggplot(df, aes(x, y)) +                 # cria um ggplot
         axis.title.x=element_blank(),        # retira o nome do eixo x
         axis.title.y=element_blank())        # retira o nome do eixo y
 
-ggplotly(p,  width = 700, height = 550)      # plota de maneira interativa e escolhe tamanho  
+ggplotly(p,  width = 500, height = 350)      # plota de maneira interativa e escolhe tamanho  
 
 
 
@@ -63,7 +63,7 @@ p <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +                # cria ggplot n
   labs(x = "Width",y = "Length") +                               # nome dos eixos         
   theme_bw()                                                     # troca o fundo cinza por branco
 
-ggplotly(p, tooltip = "text", height = 500, width = 540)         # plota gráfico interativo  
+ggplotly(p, tooltip = "text", height = 400, width = 350)         # plota gráfico interativo  
                                                                  # com tooltip escolhida e tamanho do gráfico
 
 
