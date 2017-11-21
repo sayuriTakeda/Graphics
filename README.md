@@ -7,5 +7,3 @@
 ![](Rplot5.png)
 
 ![](Rplot3.png)
-
-<img src="foto_R_Studio.png" width="150">
