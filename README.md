@@ -1,11 +1,11 @@
-# Interactive_Graphics
+# Interactive Graphs Examples
 
-![Rstudio logo](Rplot4_2.png)
+![](Rplot4_2.png)
 
-![Rstudio logo](Rplot1.png)
+![](Rplot1.png)
 
-![Rstudio logo](Rplot3.png)
+![](Rplot3.png)
 
-![Rstudio logo](Rplot5.png)
+![](Rplot5.png)
 
-  <img src="foto_R_Studio.png" width="150">
+<img src="foto_R_Studio.png" width="150">
