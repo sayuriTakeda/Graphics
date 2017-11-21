@@ -2,4 +2,4 @@
 
 <img src="foto_R_Studio.png" width="250">
 
-![Rstudio logo](foto_R_Studio.png)
+![Rstudio logo](Rplot1.png)
