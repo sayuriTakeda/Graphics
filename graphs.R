@@ -26,12 +26,12 @@ ggplotly(p)                                                       #faz o gráfic
 x2<- max(c(iris$Sepal.Length,iris$Sepal.Width))           # pega o ponto máx entre as variáveis 
 P <- ggplot(iris,aes(Sepal.Width,Sepal.Length)) +         # escolhe a base e as variáveis
   geom_point(aes(colour = factor(Species)),               # escolhe como os pontos serão coloridos
-             size = 2) +                                  # tamanho dos pontos 
+             size = 1) +                                  # tamanho dos pontos 
   labs(x = "Sepal.Width",y = "Sepal.Length",              # nome dos eixos  
        title = "Gráfico ggplotly", colour = "Species") +  # título do gráfico e título das cores
   geom_segment(aes(x = 0, y = 0, xend = x2, yend = x2),   # monta a linha (começando no 0,0)
                colour = "#737373", size = 0.3)            # cor e largura da linha
-ggplotly(P, height = 600, width = 640)                    # plota o gráfico interativo e escolhe tamanho
+ggplotly(P, height = 400, width = 500)                    # plota o gráfico interativo e escolhe tamanho
 
 
 
