@@ -177,3 +177,29 @@ output$clientes_fieis <- renderPlotly({                                        #
     
     ggplotly(graph, tooltip = "text")                                            # deixar interativo 
   })
+
+
+####### bubble plot e ggplot geom_point com gapminder
+library(gapminder)                                                         # base de dados 
+
+gap_with_colors <-                                                         # esolhe uma cor para cada country
+  data.frame(gapminder,
+             cc = I(country_colors[match(gapminder$country,
+                                         names(country_colors))]))
+
+# bubble plot, focus just on Africa and Europe in 2007
+keepers <- with(gap_with_colors,                                           # filtra só o ano de 2007 na base
+                 year == 2007)
+plot(lifeExp ~ gdpPercap, gap_with_colors,
+     subset = keepers, log = "x", pch = 21,
+     cex = sqrt(gap_with_colors$pop[keepers]/pi)/3000,                     # tamanho
+     bg = gap_with_colors$cc[keepers])                                     # cor  
+
+# movie
+library(gganimate)                                                         # para fazer com animação
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, 
+                           color = continent, frame = year)) +             # frame vai ser ano 
+  geom_point() +
+  scale_x_log10()
+
+gganimate(p)                                                               # gera o gráfico com animate     
