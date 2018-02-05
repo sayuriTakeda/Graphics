@@ -203,3 +203,13 @@ p <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop,
   scale_x_log10()
 
 gganimate(p)                                                               # gera o gráfico com animate     
+
+
+####### scale_fill_hue para alterar as cores do fill
+p <- base %>% ggplot(aes(SEMANA, PECAS, fill = SKU_NOME)) +
+  geom_col() +
+  labs(x = "Semanas",y = "Quantidade", title = "Teste") +
+  theme(plot.title = element_text(hjust = 0.5)) +                     # ajusta o titulo no meio
+  theme(legend.position="none") +                                     # retira a legenda do fill
+  scale_fill_hue(l=30, c=70)                                          # altera as cores
+ggplotly(p)
