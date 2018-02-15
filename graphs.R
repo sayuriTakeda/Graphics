@@ -42,17 +42,16 @@ df <- data.frame(
   Sepal_Lenght = iris$Sepal.Length)          # escolhe a variável que vai receber a escala de cor
 
 p <- ggplot(df, aes(x, y)) +                 # cria um ggplot 
-  geom_point(aes(colour = Sepal_Lenght)) +
+  geom_point(aes(colour = Sepal_Lenght), 
+             show.legend = F) +
   scale_colour_gradient(low = "#33ccff",     # a "menor cor" 
                         high = "#ff99cc") +  # a "maior cor"
-  theme(axis.text.x=element_blank(),         # pode botar o título tirando essa parte e inserindo + labs(title = "Nome do Título")
-        axis.title.x=element_blank(),        # retira o nome do eixo x 
-        axis.title.y=element_blank()) +      # retira o nome do eixo y
-  labs(title = "Interativo + cores em gradiente",
-       colour = "Sepal Lenght") 
+  theme(axis.title.x=element_blank(),        # retira o nome do eixo x 
+        axis.title.y=element_blank(),        # retira o nome do eixo y
+        plot.title = element_text(hjust = 0.5)) +      
+  labs(title = "Interativo + cores em gradiente") 
 
 ggplotly(p,  width = 500, height = 350)      # plota de maneira interativa e escolhe tamanho  
-
 
 
 
