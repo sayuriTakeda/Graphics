@@ -1,6 +1,6 @@
 # Interactive Graphics Examples
 
-![](Rplot4_2.png)
+![](Rplot.png)
 
 ![](Rplot1.png)
 
