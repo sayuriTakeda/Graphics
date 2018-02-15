@@ -213,3 +213,13 @@ p <- base %>% ggplot(aes(SEMANA, PECAS, fill = SKU_NOME)) +
   theme(legend.position="none") +                                     # retira a legenda do fill
   scale_fill_hue(l=30, c=70)                                          # altera as cores
 ggplotly(p)
+
+
+####### facet_grid
+p <- base_rbind %>% ggplot(aes(SEMANA, VENDA, colour = factor(NOME))) + 
+  geom_line(show.legend = F) +                                        # oculta a legenda do colour
+  labs(colour = "", title = "Title") +
+  theme(plot.title = element_text(hjust = 0.5),                       # ajusta título 
+        panel.background = element_blank())                           # fundo branco
+
+p + facet_grid(NOME~., scales = "free")                               # cada grid por nome
