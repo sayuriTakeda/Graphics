@@ -222,3 +222,11 @@ p <- base_rbind %>% ggplot(aes(SEMANA, VENDA, colour = factor(NOME))) +
         panel.background = element_blank())                           # fundo branco
 
 p + facet_grid(NOME~., scales = "free")                               # cada grid por nome
+
+
+####### geom_point colorido por coluna_teste
+p <- base %>% arrange(CONVERSAO_ATUAL) %>% 
+  ggplot(aes(HOR_PROCESSAMENTO, CONVERSAO_ATUAL)) + 
+  geom_line() +
+  geom_point(aes(colour = factor(coluna_teste)))
+ggplotly(p)
