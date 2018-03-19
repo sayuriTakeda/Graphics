@@ -230,3 +230,18 @@ p <- base %>% arrange(CONVERSAO_ATUAL) %>%
   geom_line() +
   geom_point(aes(colour = factor(coluna_teste)))
 ggplotly(p)
+
+
+####### geom_line + geom_point com gradient color
+cc <- scales::seq_gradient_pal("#00cc00", "#e60000")(seq(0,1,length.out=52))
+
+p <- a %>% ggplot(aes(PVM, share, colour = factor(SEMANA))) + 
+  geom_line(show.legend = T) +
+  geom_point(aes(text = paste0("PVM: ", PVM, "\n",
+                               "SHARE: ", share, "\n",
+                               "SEMANA: ", SEMANA, "\n",
+                               "SKU: ", SKU_NOME))) +
+  labs(colour = "semana") +
+  scale_colour_manual(values=cc)
+ggplotly(p, tooltip = "text")
+
