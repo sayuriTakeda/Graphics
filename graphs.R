@@ -245,3 +245,9 @@ p <- a %>% ggplot(aes(PVM, share, colour = factor(SEMANA))) +
   scale_colour_manual(values=cc)
 ggplotly(p, tooltip = "text")
 
+
+####### cada linha do gráfico em colunas diferentes na tabela #######
+a_b %>% ggplot(aes(SEMANA)) +
+  geom_line(aes(y = SOMA_A, colour = MARCA_TAMANHO)) +
+  geom_line(aes(y = SOMA_B, colour = MARCA_TAMANHO_B))
+
