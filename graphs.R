@@ -246,8 +246,20 @@ p <- a %>% ggplot(aes(PVM, share, colour = factor(SEMANA))) +
 ggplotly(p, tooltip = "text")
 
 
-####### cada linha do gráfico em colunas diferentes na tabela #######
+####### cada linha do gráfico em colunas diferentes na tabela
 a_b %>% ggplot(aes(SEMANA)) +
   geom_line(aes(y = SOMA_A, colour = MARCA_TAMANHO)) +
   geom_line(aes(y = SOMA_B, colour = MARCA_TAMANHO_B))
 
+
+####### geom_bar com vjust e position_dodge
+df2 <- data.frame(supp=rep(c("VC", "OJ"), each=3),
+                  dose=rep(c("D0.5", "D1", "D2"),2),
+                  len=c(6.8, 15, 33, 4.2, 10, 29.5))
+
+ggplot(data=df2, aes(x=dose, y=len, fill=supp)) +
+  geom_bar(stat="identity", position=position_dodge())+
+  geom_text(aes(label=len), vjust=-0.8, color="black",   # vjust altura do numero 
+            position = position_dodge(0.9), size=3.5)+   # altera a posição eixo x 
+  scale_fill_brewer(palette="Paired")+
+  theme_minimal()
