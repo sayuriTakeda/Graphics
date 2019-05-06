@@ -263,3 +263,14 @@ ggplot(data=df2, aes(x=dose, y=len, fill=supp)) +
             position = position_dodge(0.9), size=3.5)+   # altera a posição eixo x 
   scale_fill_brewer(palette="Paired")+
   theme_minimal()
+
+
+####### inserir ponto (big.mark) em eixo y do ggplot
+BASE_QTDE_COMPRAS_MES %>%                      
+  ggplot(aes(x = DATA, y = QTD_COMPRAS)) +
+  geom_line(colour = "#24478f") +
+  theme_light() + 
+  labs(x = "Data", y = "Quantidade de compras") +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %y") +  # eixo de mês em mês (abr 18 .. mar 19)
+  scale_y_continuous(labels = function(x) format(x, big.mark = ".", decimal.mark = ",", scientific = FALSE)) # big.mark eixo y
+                     
