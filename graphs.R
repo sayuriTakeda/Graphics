@@ -287,4 +287,21 @@ tabela %>%
   theme_minimal() +
   labs(x = "Especie", y = "Quantidade") +
   ylim(0,100)
+
+
+####### lollipop
+x <- c(1,2,3,4,8,9)
+y <- c(14,15,16,18,19,19)
+z <- c("a", "b", "c", "d", "e", "f")
+tabela  <- data.frame(x,y,z)                                # cria a tabela 
+tabela %<>% rowwise() %>% mutate(media = mean(c(x, y)))     # média para cada linha 
+
+tabela %>% 
+  ggplot() +
+  geom_segment(aes(x=z, xend=z, y=x, yend=y), color="#666699", size = 1, alpha = 0.5) +  # cria a barrinha
+  geom_point(aes(x = z, y = x), size = 3, color="#0000b3", alpha = 0.7) +                # cria os pontos referentes a col x
+  geom_point(aes(x = z, y = y), size = 3, color="#ff4dff", alpha = 0.7) +                # cria os pontos referentes a col y
+  coord_flip() +                                                                         # inverte
+  theme_minimal() +                                                                      # altera cor de fundo 
+  labs(y = "Valores", x = "")                                                            # altera label
                      
