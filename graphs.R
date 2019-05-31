@@ -1,5 +1,8 @@
-####################### Interactive Graphics ####################### 
+####################################################################
+####################### Interactive Graphics #######################
+
 library(dplyr)
+library(magrittr)
 library(highcharter)
 library(ggplot2)
 library(plotly)
