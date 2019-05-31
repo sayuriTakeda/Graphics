@@ -273,4 +273,18 @@ BASE_QTDE_COMPRAS_MES %>%
   labs(x = "Data", y = "Quantidade de compras") +
   scale_x_date(date_breaks = "1 month", date_labels = "%b %y") +  # eixo de mês em mês (abr 18 .. mar 19)
   scale_y_continuous(labels = function(x) format(x, big.mark = ".", decimal.mark = ",", scientific = FALSE)) # big.mark eixo y
+
+
+####### inserir geom_text na coluna
+tabela <- iris %>% 
+  group_by(Species) %>% 
+  summarise(n = n())
+
+tabela %>% 
+  ggplot(aes(Species, n)) +
+  geom_col(fill = "#006666", alpha = 0.5) +
+  geom_text(aes(label = n),  vjust = -0.5) + #position=position_dodge(width=0.9)
+  theme_minimal() +
+  labs(x = "Especie", y = "Quantidade") +
+  ylim(0,100)
                      
