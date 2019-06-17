@@ -307,4 +307,16 @@ tabela %>%
   coord_flip() +                                                                         # inverte
   theme_minimal() +                                                                      # altera cor de fundo 
   labs(y = "Valores", x = "")                                                            # altera label
-                     
+
+
+####### label com regra
+base %>% 
+  ggplot(aes(SOMA_VALOR, CONTAGEM_COMPRADORES)) +
+  geom_point(size = 2, alpha = 0.5, colour = "#800000") +
+  geom_text(
+    data = subset(val_tran_sem_pre_pago, CONTAGEM_COMPRADORES > 60),
+    aes(label=paste0("               R$", SOMA_VALOR))
+    ) +
+  labs(x = "Montante Valor", y = "Qtd Compradores") +
+  xlim(0, 1000) +
+  theme_minimal()
