@@ -313,8 +313,9 @@ tabela %>%
 base %>% 
   ggplot(aes(SOMA_VALOR, CONTAGEM_COMPRADORES)) +
   geom_point(size = 2, alpha = 0.5, colour = "#800000") +
+  geom_segment(aes(x = 250, y = 0, xend = 250, yend = 2000), colour = "red", size = 0.3) +
   geom_text(
-    data = subset(val_tran_sem_pre_pago, CONTAGEM_COMPRADORES > 60),
+    data = subset(base, CONTAGEM_COMPRADORES > 60),
     aes(label=paste0("               R$", SOMA_VALOR))
     ) +
   labs(x = "Montante Valor", y = "Qtd Compradores") +
