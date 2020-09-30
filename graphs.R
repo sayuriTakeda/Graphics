@@ -1,11 +1,13 @@
 ####################################################################
-####################### Interactive Graphics #######################
-
+############################# pacotes ##############################
 library(dplyr)
 library(magrittr)
 library(highcharter)
 library(ggplot2)
 library(plotly)
+
+####################################################################
+####################### exemplos de gráficos #######################
 
 ####### Escrever gráfico interativo com highcharter
 highchart() %>% 
@@ -308,7 +310,7 @@ tabela %>%
   theme_minimal() +                                                                      # altera cor de fundo 
   labs(y = "Valores", x = "")                                                            # altera label
 
-
+                     
 ####### label com regra
 base %>% 
   ggplot(aes(SOMA_VALOR, CONTAGEM_COMPRADORES)) +
@@ -321,7 +323,8 @@ base %>%
   labs(x = "Montante Valor", y = "Qtd Compradores") +
   xlim(0, 1000) +
   theme_minimal()
-                 
+           
+                                   
 ####### Boxplot
 tabela %>% 
   mutate(GRUPO = "") %>% 
@@ -332,7 +335,8 @@ tabela %>%
     labels = function(x) format(x, big.mark = ".", decimal.mark = ",", scientific = FALSE)
   ) +
   theme_minimal()
-                     
+            
+                                  
 ####### datatable (library DT)                
 datatable(
   tabela_toy,
@@ -346,3 +350,6 @@ datatable(
       "header()).css({'background-color': '#264d73', ",
       "'color': '#fff'});}"
       )))
+         
+                                  
+####### fim
