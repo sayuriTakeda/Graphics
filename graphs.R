@@ -332,3 +332,17 @@ tabela %>%
     labels = function(x) format(x, big.mark = ".", decimal.mark = ",", scientific = FALSE)
   ) +
   theme_minimal()
+                     
+####### datatable (library DT)                
+datatable(
+  tabela_toy,
+  rownames = F, 
+  options = list(
+    scrollX=T,
+    pageLength = 5,
+    columnDefs = list(list(className = 'dt-center', targets = 0:26)),
+    initComplete = JS(
+      "function(settings, json) {$(this.api().table().",
+      "header()).css({'background-color': '#264d73', ",
+      "'color': '#fff'});}"
+      )))
