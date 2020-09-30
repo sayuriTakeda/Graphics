@@ -321,3 +321,14 @@ base %>%
   labs(x = "Montante Valor", y = "Qtd Compradores") +
   xlim(0, 1000) +
   theme_minimal()
+                 
+####### Boxplot
+tabela %>% 
+  mutate(GRUPO = "") %>% 
+  ggplot(aes(x = GRUPO, y = SCORE)) +
+  geom_boxplot(fill = "#ffffcc", colour = "goldenrod2", outlier.alpha = 0.1, outlier.colour="#800000") +
+  labs(x = "", y = "Score", title = "Geral") +
+  scale_y_continuous(
+    labels = function(x) format(x, big.mark = ".", decimal.mark = ",", scientific = FALSE)
+  ) +
+  theme_minimal()
